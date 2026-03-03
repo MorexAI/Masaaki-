@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Morex Masaaki | Simple Luxury</title>
+    <!-- Tailwind Play CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: '#ffffff',
+                        dark: '#000000',
+                        card: '#0a0a0a',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['UnifrakturMaguntia', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-black text-white selection:bg-white selection:text-black">
+    <!-- Hero Section -->
+    <section class="h-screen flex flex-col items-center justify-center relative px-4 overflow-hidden">
+        <div class="z-10 text-center space-y-12 animate-fade-in">
+            <div class="flex flex-col items-center relative">
+                <!-- Signature Logo -->
+                <img src="masaaki_images/masaaki logo.jpeg" alt="Morex Masaaki Logo" class="w-[320px] h-auto opacity-100 mb-[-40px] mix-blend-lighten relative z-20">
+                <h1 class="text-4xl md:text-6xl font-serif tracking-tighter italic animate-glow relative z-10">Morex Masaaki</h1>
+                <div class="absolute inset-0 bg-white blur-[80px] -z-10 rounded-full opacity-15"></div>
+            </div>
+            <button onclick="scrollToOrder()" class="group relative px-10 py-4 bg-transparent border border-white/30 hover:border-white transition-all duration-500 rounded-full overflow-hidden">
+                <span class="relative z-10 text-[10px] font-bold uppercase tracking-[0.5em] group-hover:tracking-[0.6em] transition-all duration-500">Order Now</span>
+                <div class="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            </button>
+        </div>
+        
+        <!-- Background Ambient Glow -->
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-white/5 blur-[120px] rounded-full opacity-20 pointer-events-none"></div>
+
+        <div onclick="scrollToOrder()" class="absolute bottom-10 left-1/2 -translate-x-1/2 cursor-pointer opacity-40 hover:opacity-100 transition-opacity animate-bounce">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="m6 9 6 6 6-6" />
+            </svg>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="py-32 px-6 max-w-7xl mx-auto space-y-20">
+        <div class="text-center space-y-4">
+            <h2 class="text-4xl md:text-5xl font-bold tracking-tighter uppercase">The Collection</h2>
+            <p class="text-gray-500 text-[10px] uppercase tracking-[0.3em]">Simple Luxury. Strictly Monochrome.</p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-12 lg:gap-24">
+            <!-- Product 1 -->
+            <div class="group flex flex-col items-center p-6 bg-black border border-white/10 hover:border-white/40 transition-all duration-500 rounded-lg transform hover:-translate-y-2">
+                <div class="relative w-full aspect-square bg-card overflow-hidden mb-6 rounded-md border border-white/5">
+                    <img src="masaaki collection/blacks-shirt.jpeg" alt="Jet Black Shirt" class="w-full h-full object-contain transition-transform duration-700 scale-100 group-hover:scale-108 clarity-enhance">
+                </div>
+                <div class="text-center">
+                    <h3 class="text-xl font-medium mb-2 tracking-tight uppercase">Signature Jet Black Shirt</h3>
+                    <p class="text-xs text-gray-400 max-w-xs leading-relaxed">Crafted from heavyweight premium textile with signature high-density pocket embroidery.</p>
+                </div>
+            </div>
+            <!-- Product 2 -->
+            <div class="group flex flex-col items-center p-6 bg-black border border-white/10 hover:border-white/40 transition-all duration-500 rounded-lg transform hover:-translate-y-2">
+                <div class="relative w-full aspect-square bg-card overflow-hidden mb-6 rounded-md border border-white/5">
+                    <img src="masaaki collection/white-shirt.jpeg" alt="Optic White Shirt" class="w-full h-full object-contain transition-transform duration-700 scale-100 group-hover:scale-108 clarity-enhance">
+                </div>
+                <div class="text-center">
+                    <h3 class="text-xl font-medium mb-2 tracking-tight uppercase">Signature Optic White Shirt</h3>
+                    <p class="text-xs text-gray-400 max-w-xs leading-relaxed">Crafted from heavyweight premium textile with signature high-density pocket embroidery.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Order Section -->
+    <section id="order-section" class="py-32 px-6 bg-dark border-t border-white/5">
+        <div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-16 items-center">
+            <!-- Form Side -->
+            <div class="order-2 md:order-1">
+                <div id="order-form-wrapper">
+                    <div class="mb-10 text-center space-y-2">
+                        <h2 class="text-3xl font-bold tracking-tighter uppercase">Secure Your Piece</h2>
+                        <p class="text-gray-500 text-[10px] uppercase tracking-[0.3em]">Limited Availability</p>
+                    </div>
+
+                    <form id="order-form" class="space-y-6">
+                        <div class="relative">
+                            <span class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" /><circle cx="12" cy="7" r="4" /></svg>
+                            </span>
+                            <input type="text" id="fullName" placeholder="FULL NAME" required class="w-full bg-black border border-white/10 p-4 pl-12 rounded-md focus:border-white/50 outline-none transition-all uppercase tracking-widest text-[10px]">
+                        </div>
+
+                        <div class="relative">
+                            <span class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" /><circle cx="12" cy="10" r="3" /></svg>
+                            </span>
+                            <input type="text" id="address" placeholder="DELIVERY ADDRESS" required class="w-full bg-black border border-white/10 p-4 pl-12 rounded-md focus:border-white/50 outline-none transition-all uppercase tracking-widest text-[10px]">
+                        </div>
+
+                        <div class="relative">
+                            <span class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" /></svg>
+                            </span>
+                            <input type="tel" id="phone" placeholder="PHONE NUMBER" required class="w-full bg-black border border-white/10 p-4 pl-12 rounded-md focus:border-white/50 outline-none transition-all uppercase tracking-widest text-[10px]">
+                        </div>
+
+                        <!-- Collection Choice & Pieces -->
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="space-y-2">
+                                <label class="text-[9px] uppercase tracking-[0.3em] text-gray-500 ml-1">Collection</label>
+                                <select id="collectionChoice" class="w-full bg-black border border-white/10 p-3 rounded-md focus:border-white/50 outline-none transition-all text-[10px] uppercase appearance-none">
+                                    <option value="Black Shirt">Jet Black</option>
+                                    <option value="White Shirt">Optic White</option>
+                                </select>
+                            </div>
+                            <div class="space-y-2">
+                                <label class="text-[9px] uppercase tracking-[0.3em] text-gray-500 ml-1">Pieces</label>
+                                <input type="number" id="pieces" value="1" min="1" max="10" class="w-full bg-black border border-white/10 p-3 rounded-md focus:border-white/50 outline-none transition-all text-[10px]">
+                            </div>
+                        </div>
+
+                        <!-- Size Selection -->
+                        <div class="space-y-3">
+                            <label class="text-[9px] uppercase tracking-[0.3em] text-gray-500 ml-1">Select Size</label>
+                            <div id="size-buttons" class="grid grid-cols-5 gap-2">
+                                <button type="button" class="size-btn py-3 border border-white/10 text-[10px] transition-all hover:border-white/30" data-size="S">S</button>
+                                <button type="button" class="size-btn py-3 border border-white border-white bg-white text-black text-[10px] transition-all" data-size="M">M</button>
+                                <button type="button" class="size-btn py-3 border border-white/10 text-[10px] transition-all hover:border-white/30" data-size="L">L</button>
+                                <button type="button" class="size-btn py-3 border border-white/10 text-[10px] transition-all hover:border-white/30" data-size="XL">XL</button>
+                                <button type="button" class="size-btn py-3 border border-white/10 text-[10px] transition-all hover:border-white/30" data-size="XXL">XXL</button>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="w-full py-5 bg-white text-black font-bold uppercase tracking-[0.4em] text-[10px] hover:bg-gray-200 transition-all active:scale-[0.98] flex items-center justify-center gap-3">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z" /><path d="M3 6h18" /><path d="M16 10a4 4 0 0 1-8 0" /></svg>
+                            Confirm Order
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Success State -->
+                <div id="success-wrapper" class="hidden text-center space-y-8 animate-fade-in">
+                    <div class="flex justify-center">
+                        <svg class="w-20 h-20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10" /><path d="m9 12 2 2 4-4" /></svg>
+                    </div>
+                    <div class="space-y-4">
+                        <h2 class="text-3xl font-bold tracking-tighter uppercase">Order Confirmed</h2>
+                        <p class="text-gray-400 text-sm">Thank you, <span id="display-name" class="text-white"></span>. Your <span id="display-pieces" class="text-white"></span>x <span id="display-collection" class="text-white"></span> is being prepared.</p>
+                    </div>
+                    <div class="bg-white/5 p-6 rounded-lg border border-white/10 space-y-4">
+                        <div class="flex items-center justify-between text-[10px] uppercase tracking-widest text-gray-500">
+                            <span>Estimated Delivery</span>
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m7.5 4.27 9 5.15" /><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z" /><path d="m3.3 7 8.7 5 8.7-5" /><path d="M12 22V12" /></svg>
+                        </div>
+                        <div id="display-date" class="text-xl font-medium"></div>
+                        <div id="display-time" class="text-xs text-gray-400 italic"></div>
+                    </div>
+                    <button onclick="resetOrderForm()" class="w-full py-4 border border-white/20 hover:bg-white hover:text-black transition-all duration-300 uppercase tracking-widest text-[10px] font-bold">Place Another Order</button>
+                </div>
+            </div>
+
+            <!-- Info Side -->
+            <div class="order-1 md:order-2 space-y-8">
+                <div class="space-y-4">
+                    <h3 class="text-2xl font-bold uppercase tracking-tighter">Premium Service</h3>
+                    <p class="text-gray-400 text-xs leading-relaxed">Every Morex Masaaki piece is handled with extreme care. From the moment you place your order, our dedicated team ensures your item is inspected, packed in our signature matte black box, and shipped with priority tracking.</p>
+                </div>
+                <div class="space-y-4">
+                    <div class="flex items-center gap-4 text-[10px] uppercase tracking-widest text-gray-500">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
+                        Priority Shipping Included
+                    </div>
+                    <div class="flex items-center gap-4 text-[10px] uppercase tracking-widest text-gray-500">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
+                        Signature Packaging
+                    </div>
+                    <div class="flex items-center gap-4 text-[10px] uppercase tracking-widest text-gray-500">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
+                        Authenticity Guaranteed
+                    </div>
+                </div>
+                <div class="pt-8 border-t border-white/10">
+                    <a href="https://instagram.com/morex.masaaki" target="_blank" class="flex items-center gap-2 text-[10px] uppercase tracking-[0.2em] text-white/40 hover:text-white transition-colors">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="20" x="2" y="2" rx="5" ry="5" /><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" /><line x1="17.5" x2="17.51" y1="6.5" y2="6.5" /></svg>
+                        @morex.masaaki
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-20 text-center border-t border-white/5">
+        <p class="text-[9px] uppercase tracking-[0.5em] text-white/20">© 2026 MOREX MASAAKI. ALL RIGHTS RESERVED.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
