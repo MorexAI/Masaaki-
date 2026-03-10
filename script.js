@@ -11,6 +11,10 @@ let selectedSize = 'M';
 document.addEventListener('DOMContentLoaded', () => {
     const orderForm = document.getElementById('order-form');
     const sizeButtons = document.querySelectorAll('.size-btn');
+    const productCards = document.querySelectorAll('.product-card');
+    const modal = document.getElementById('review-modal');
+    const closeBtn = document.getElementById('review-close');
+    const ctaBtn = document.getElementById('review-cta');
 
     // Handle Size Selection
     sizeButtons.forEach(btn => {
@@ -25,6 +29,27 @@ document.addEventListener('DOMContentLoaded', () => {
             btn.classList.remove('bg-black', 'text-white', 'border-white/10');
             selectedSize = btn.dataset.size;
         });
+    });
+
+    productCards.forEach(card => {
+        card.addEventListener('click', () => {
+            const collectionName = card.getAttribute('data-collection-name') || 'Collection';
+            const color = card.getAttribute('data-color') || 'Black';
+            const price = card.getAttribute('data-price') || '$95';
+            const piecesInput = document.getElementById('pieces');
+            const pieces = piecesInput && piecesInput.value ? piecesInput.value : '1';
+            const deliveryWindow = '3–5';
+            openReviewDialog({ collectionName, color, price, pieces, size: selectedSize, deliveryWindow });
+        });
+    });
+
+    closeBtn.addEventListener('click', () => closeReviewDialog());
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) closeReviewDialog();
+    });
+    ctaBtn.addEventListener('click', () => {
+        closeReviewDialog();
+        scrollToOrder();
     });
 
     // Handle Form Submission
@@ -101,4 +126,32 @@ function resetOrderForm() {
     });
 
     window.scrollTo({ top: document.getElementById('order-section').offsetTop - 100, behavior: 'smooth' });
+}
+
+function openReviewDialog({ collectionName, size, color, pieces, price, deliveryWindow }) {
+    const modal = document.getElementById('review-modal');
+    const title = document.getElementById('review-title');
+    const sub = document.getElementById('review-subheading');
+    const keyspecs = document.getElementById('review-keyspecs');
+    const fit = document.getElementById('review-fit');
+    const design = document.getElementById('review-design');
+    const care = document.getElementById('review-care');
+    const delivery = document.getElementById('review-delivery');
+    const priceEl = document.getElementById('review-price');
+
+    title.textContent = `${collectionName} — Review`;
+    sub.textContent = 'A disciplined essential, cut for clarity and crafted to endure.';
+    keyspecs.textContent = `Key Specs: Collection ${collectionName}, Size ${size}, Color ${color}, Pieces ${pieces}. Balanced weight for daily wear; crisp structure with quiet movement.`;
+    fit.textContent = 'Fit & Fabric: tailored fit; premium combed cotton with a smooth hand; breathable, all-season comfort; clean lines that hold their shape.';
+    design.textContent = 'Design Notes: signature minimal branding; disciplined proportions; a timeless cut that layers effortlessly; versatile styling from studio to street.';
+    care.textContent = 'Care: cold wash, inside-out with mild detergent; hang dry to preserve structure; low iron as needed; avoid bleach and harsh heat.';
+    delivery.textContent = `Delivery: ${deliveryWindow} business days with tracked priority service for a precise handoff.`;
+    priceEl.textContent = `Price: ${price}, taxes excluded.`;
+
+    modal.classList.remove('hidden');
+}
+
+function closeReviewDialog() {
+    const modal = document.getElementById('review-modal');
+    modal.classList.add('hidden');
 }
