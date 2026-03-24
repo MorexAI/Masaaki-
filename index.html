@@ -12,6 +12,7 @@
     <link href="https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
     <script>
         tailwind.config = {
+            darkMode: 'class',
             theme: {
                 extend: {
                     colors: {
@@ -28,20 +29,44 @@
         }
     </script>
 </head>
-<body class="bg-black text-white selection:bg-white selection:text-black">
+<body class="bg-white text-black dark:bg-black dark:text-white selection:bg-black selection:text-white">
+    <header class="fixed top-0 left-0 right-0 z-40 border-b border-black/10 dark:border-white/10 bg-white/70 dark:bg-black/50 backdrop-blur-md">
+        <nav class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+            <a href="#" class="text-lg font-bold tracking-tight">Morex Masaaki</a>
+            <div class="flex items-center gap-6">
+                <a href="#collection" class="text-sm uppercase tracking-widest text-black/70 dark:text-white/70 hover:text-black dark:hover:text-white">Collection</a>
+                <a href="#about" class="text-sm uppercase tracking-widest text-black/70 dark:text-white/70 hover:text-black dark:hover:text-white">About</a>
+                <a href="#lookbook" class="text-sm uppercase tracking-widest text-black/70 dark:text-white/70 hover:text-black dark:hover:text-white">Lookbook</a>
+                <a href="#faq" class="text-sm uppercase tracking-widest text-black/70 dark:text-white/70 hover:text-black dark:hover:text-white">FAQ</a>
+                <a href="#order-section" class="text-sm uppercase tracking-widest text-black/70 dark:text-white/70 hover:text-black dark:hover:text-white">Order</a>
+                <button id="theme-toggle" aria-label="Toggle theme" class="px-3 py-2 border border-black/20 dark:border-white/20 rounded-md text-sm uppercase tracking-widest hover:bg-black/5 dark:hover:bg-white/10">🌞</button>
+                <button id="open-cart" class="relative px-3 py-2 border border-black/20 dark:border-white/20 rounded-md text-sm uppercase tracking-widest hover:bg-black/5 dark:hover:bg-white/10">
+                    Cart
+                    <span id="cart-count" class="absolute -top-2 -right-2 text-[10px] px-1.5 py-0.5 rounded bg-black text-white dark:bg-white dark:text-black">0</span>
+                </button>
+            </div>
+        </nav>
+    </header>
+    <div class="h-16"></div>
     <!-- Hero Section -->
     <section class="h-screen flex flex-col items-center justify-center relative px-4 overflow-hidden">
         <div class="z-10 text-center space-y-12 animate-fade-in">
             <div class="flex flex-col items-center relative">
                 <!-- Signature Logo -->
-                <img src="masaaki_images/masaaki logo.jpeg" alt="Morex Masaaki Logo" class="w-[320px] h-auto opacity-100 mb-[-40px] mix-blend-lighten relative z-20">
+                <div class="relative inline-block">
+                    <div class="absolute inset-0 rounded-md bg-black/90 block dark:hidden"></div>
+                    <img id="brand-logo" src="masaaki_images/light logo.jpeg" alt="Morex Masaaki Logo" class="relative z-10 w-[200px] md:w-[240px] dark:w-[320px] h-auto opacity-100 mb-[-12px] mix-blend-lighten">
+                </div>
                 <h1 class="text-4xl md:text-6xl font-serif tracking-tighter italic animate-glow relative z-10">Morex Masaaki</h1>
+                <p class="mt-3 text-xs uppercase tracking-[0.35em] text-black/60 dark:text-white/60">Simple Luxury • Monochrome Essentials</p>
                 <div class="absolute inset-0 bg-white blur-[80px] -z-10 rounded-full opacity-15"></div>
             </div>
-            <button onclick="scrollToOrder()" class="group relative px-10 py-4 bg-transparent border border-white/30 hover:border-white transition-all duration-500 rounded-full overflow-hidden">
-                <span class="relative z-10 text-[10px] font-bold uppercase tracking-[0.5em] group-hover:tracking-[0.6em] transition-all duration-500">Order Now</span>
-                <div class="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-            </button>
+            <div class="flex items-center gap-4 justify-center">
+                <button onclick="scrollToOrder()" class="group relative px-8 py-3 bg-black text-white dark:bg-white dark:text-black border border-black/20 dark:border-white/20 hover:bg-gray-900 dark:hover:bg-gray-200 transition-all duration-500 rounded-full overflow-hidden">
+                    <span class="relative z-10 text-[10px] font-bold uppercase tracking-[0.5em]">Order Now</span>
+                </button>
+                <a href="#collection" class="px-8 py-3 border border-black/20 dark:border-white/20 rounded-full text-[10px] uppercase tracking-[0.5em] hover:bg-black/5 dark:hover:bg-white/10 transition">Explore</a>
+            </div>
         </div>
         
         <!-- Background Ambient Glow -->
@@ -54,45 +79,195 @@
         </div>
     </section>
 
-    <!-- Products Section -->
-    <section class="py-32 px-6 max-w-7xl mx-auto space-y-20">
-        <div class="text-center space-y-4">
-            <h2 class="text-4xl md:text-5xl font-bold tracking-tighter uppercase">The Collection</h2>
-            <p class="text-gray-500 text-[10px] uppercase tracking-[0.3em]">Simple Luxury. Strictly Monochrome.</p>
-        </div>
-
-        <div class="grid md:grid-cols-2 gap-12 lg:gap-24">
-            <!-- Product 1 -->
-            <div class="group product-card flex flex-col items-center p-6 bg-black border border-white/10 hover:border-white/40 transition-all duration-500 rounded-lg transform hover:-translate-y-2 cursor-pointer"
-                 data-collection-name="Signature Jet Black Shirt"
-                 data-color="Black"
-                 data-price="$95">
-                <div class="relative w-full aspect-square bg-card overflow-hidden mb-6 rounded-md border border-white/5">
-                    <img src="masaaki_images/masaaki-black.jpeg" alt="Jet Black Shirt" class="w-full h-full object-contain transition-transform duration-700 scale-100 group-hover:scale-108 clarity-enhance">
-                </div>
-                <div class="text-center">
-                    <h3 class="text-xl font-medium mb-2 tracking-tight uppercase">Signature Jet Black Shirt</h3>
-                    <p class="text-xs text-gray-400 max-w-xs leading-relaxed">Crafted from heavyweight premium textile with signature high-density pocket embroidery.</p>
+    <section id="highlights" class="py-12 border-t border-black/10 dark:border-white/10">
+        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-3 gap-6">
+            <div class="flex items-start gap-4">
+                <svg width="20" height="20" viewBox="0 0 24 24" class="mt-1"><path d="M12 2v20M2 12h20" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+                <div>
+                    <div class="text-sm uppercase tracking-[0.3em] text-black/60 dark:text-white/60">Materials</div>
+                    <p class="text-sm text-black/80 dark:text-white/80">Premium combed cotton with a smooth hand and enduring structure.</p>
                 </div>
             </div>
-            <!-- Product 2 -->
-            <div class="group product-card flex flex-col items-center p-6 bg-black border border-white/10 hover:border-white/40 transition-all duration-500 rounded-lg transform hover:-translate-y-2 cursor-pointer"
-                 data-collection-name="Signature Optic White Shirt"
-                 data-color="White"
-                 data-price="$95">
-                <div class="relative w-full aspect-square bg-card overflow-hidden mb-6 rounded-md border border-white/5">
-                    <img src="masaaki_images/masaaki-white.jpeg" alt="Optic White Shirt" class="w-full h-full object-contain transition-transform duration-700 scale-100 group-hover:scale-108 clarity-enhance">
+            <div class="flex items-start gap-4">
+                <svg width="20" height="20" viewBox="0 0 24 24" class="mt-1"><path d="M4 12l4 4 12-12" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+                <div>
+                    <div class="text-sm uppercase tracking-[0.3em] text-black/60 dark:text-white/60">Precision Fit</div>
+                    <p class="text-sm text-black/80 dark:text-white/80">Disciplined proportions and clean lines for a refined silhouette.</p>
                 </div>
-                <div class="text-center">
-                    <h3 class="text-xl font-medium mb-2 tracking-tight uppercase">Signature Optic White Shirt</h3>
-                    <p class="text-xs text-gray-400 max-w-xs leading-relaxed">Crafted from heavyweight premium textile with signature high-density pocket embroidery.</p>
+            </div>
+            <div class="flex items-start gap-4">
+                <svg width="20" height="20" viewBox="0 0 24 24" class="mt-1"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+                <div>
+                    <div class="text-sm uppercase tracking-[0.3em] text-black/60 dark:text-white/60">Priority Shipping</div>
+                    <p class="text-sm text-black/80 dark:text-white/80">Tracked dispatch within 3–5 business days. Signature packaging.</p>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- Products Section -->
+    <section id="collection" class="py-32 px-6 max-w-7xl mx-auto space-y-20">
+        <div class="text-center space-y-4">
+            <h2 class="text-4xl md:text-5xl font-bold tracking-tighter uppercase">The Collection</h2>
+            <p class="text-gray-500 text-[10px] uppercase tracking-[0.3em]">Simple Luxury. Strictly Monochrome.</p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-12">
+            <!-- Product 1 -->
+            <div class="group product-card flex flex-col items-center p-6 bg-white dark:bg-black border border-black/10 dark:border-white/10 hover:border-black/30 dark:hover:border-white/40 transition-all duration-500 rounded-lg transform hover:-translate-y-2 cursor-pointer"
+                 data-collection-name="Signature Jet Black Shirt"
+                 data-color="Black"
+                 data-price="$95">
+                <div class="relative w-full aspect-square bg-gray-50 dark:bg-card overflow-hidden mb-6 rounded-md border border-black/10 dark:border-white/5">
+                    <img src="masaaki_images/masaaki-black.jpeg" alt="Jet Black Shirt" class="w-full h-full object-contain transition-transform duration-700 scale-100 group-hover:scale-108 clarity-enhance">
+                </div>
+                <div class="text-center">
+                    <h3 class="text-xl font-medium mb-2 tracking-tight uppercase">Signature Jet Black Shirt</h3>
+                    <p class="text-xs text-gray-400 max-w-xs leading-relaxed">Crafted from heavyweight premium textile with signature high-density pocket embroidery.</p>
+                    <button class="add-to-cart mt-4 px-6 py-2 text-sm uppercase tracking-widest border border-black/20 dark:border-white/20 hover:bg-black/5 dark:hover:bg-white/10 rounded"
+                        data-name="Signature Jet Black Shirt"
+                        data-color="Black"
+                        data-price="95"
+                        data-image="masaaki_images/blackshirt.jpeg">Add to Cart</button>
+                </div>
+            </div>
+            <!-- Product 2 -->
+            <div class="group product-card flex flex-col items-center p-6 bg-white dark:bg-black border border-black/10 dark:border-white/10 hover:border-black/30 dark:hover:border-white/40 transition-all duration-500 rounded-lg transform hover:-translate-y-2 cursor-pointer"
+                 data-collection-name="Signature Optic White Shirt"
+                 data-color="White"
+                 data-price="$95">
+                <div class="relative w-full aspect-square bg-gray-50 dark:bg-card overflow-hidden mb-6 rounded-md border border-black/10 dark:border-white/5">
+                    <img src="masaaki_images/masaaki-white.jpeg" alt="Optic White Shirt" class="w-full h-full object-contain transition-transform duration-700 scale-100 group-hover:scale-108 clarity-enhance">
+                </div>
+                <div class="text-center">
+                    <h3 class="text-xl font-medium mb-2 tracking-tight uppercase">Signature Optic White Shirt</h3>
+                    <p class="text-xs text-gray-400 max-w-xs leading-relaxed">Crafted from heavyweight premium textile with signature high-density pocket embroidery.</p>
+                    <button class="add-to-cart mt-4 px-6 py-2 text-sm uppercase tracking-widest border border-black/20 dark:border-white/20 hover:bg-black/5 dark:hover:bg-white/10 rounded"
+                        data-name="Signature Optic White Shirt"
+                        data-color="White"
+                        data-price="95"
+                        data-image="masaaki_images/whiteshirt.jpeg">Add to Cart</button>
+                </div>
+            </div>
+            <!-- Product 3 -->
+            <div class="group product-card flex flex-col items-center p-6 bg-white dark:bg-black border border-black/10 dark:border-white/10 hover:border-black/30 dark:hover:border-white/40 transition-all duration-500 rounded-lg transform hover:-translate-y-2 cursor-pointer"
+                 data-collection-name="Signature Moss Green Shirt"
+                 data-color="Green"
+                 data-price="$95">
+                <div class="relative w-full aspect-square bg-gray-50 dark:bg-card overflow-hidden mb-6 rounded-md border border-black/10 dark:border-white/5">
+                    <img src="masaaki_images/green.jpeg" alt="Moss Green Shirt" class="w-full h-full object-contain transition-transform duration-700 scale-100 group-hover:scale-108 clarity-enhance">
+                </div>
+                <div class="text-center">
+                    <h3 class="text-xl font-medium mb-2 tracking-tight uppercase">Signature Moss Green Shirt</h3>
+                    <p class="text-xs text-gray-400 max-w-xs leading-relaxed">Balanced hue with the same disciplined cut and breathable fabric.</p>
+                    <button class="add-to-cart mt-4 px-6 py-2 text-sm uppercase tracking-widest border border-black/20 dark:border-white/20 hover:bg-black/5 dark:hover:bg-white/10 rounded"
+                        data-name="Signature Moss Green Shirt"
+                        data-color="Green"
+                        data-price="95"
+                        data-image="masaaki_images/green.jpeg">Add to Cart</button>
+                </div>
+            </div>
+            <!-- Product 4 -->
+            <div class="group product-card flex flex-col items-center p-6 bg-white dark:bg-black border border-black/10 dark:border-white/10 hover:border-black/30 dark:hover:border-white/40 transition-all duration-500 rounded-lg transform hover:-translate-y-2 cursor-pointer"
+                 data-collection-name="Signature Earth Brown Shirt"
+                 data-color="Brown"
+                 data-price="$95">
+                <div class="relative w-full aspect-square bg-gray-50 dark:bg-card overflow-hidden mb-6 rounded-md border border-black/10 dark:border-white/5">
+                    <img src="masaaki_images/brownshirt.jpeg" alt="Earth Brown Shirt" class="w-full h-full object-contain transition-transform duration-700 scale-100 group-hover:scale-108 clarity-enhance">
+                </div>
+                <div class="text-center">
+                    <h3 class="text-xl font-medium mb-2 tracking-tight uppercase">Signature Earth Brown Shirt</h3>
+                    <p class="text-xs text-gray-400 max-w-xs leading-relaxed">Warm tone, precise seams, and daily-wear resilience.</p>
+                    <button class="add-to-cart mt-4 px-6 py-2 text-sm uppercase tracking-widest border border-black/20 dark:border-white/20 hover:bg-black/5 dark:hover:bg-white/10 rounded"
+                        data-name="Signature Earth Brown Shirt"
+                        data-color="Brown"
+                        data-price="95"
+                        data-image="masaaki_images/brownshirt.jpeg">Add to Cart</button>
+                </div>
+            </div>
+            <!-- Product 5 -->
+            <div class="group product-card flex flex-col items-center p-6 bg-white dark:bg-black border border-black/10 dark:border-white/10 hover:border-black/30 dark:hover:border-white/40 transition-all duration-500 rounded-lg transform hover:-translate-y-2 cursor-pointer md:col-span-2 md:justify-self-center"
+                 data-collection-name="Signature Deep Blue Shirt"
+                 data-color="Blue"
+                 data-price="$95">
+                <div class="relative w-full aspect-square bg-gray-50 dark:bg-card overflow-hidden mb-6 rounded-md border border-black/10 dark:border-white/5">
+                    <img src="masaaki_images/blueshirt.jpeg" alt="Deep Blue Shirt" class="w-full h-full object-contain transition-transform duration-700 scale-100 group-hover:scale-108 clarity-enhance">
+                </div>
+                <div class="text-center">
+                    <h3 class="text-xl font-medium mb-2 tracking-tight uppercase">Signature Deep Blue Shirt</h3>
+                    <p class="text-xs text-gray-400 max-w-xs leading-relaxed">Quiet depth with the same tailored profile and breathable hand.</p>
+                    <button class="add-to-cart mt-4 px-6 py-2 text-sm uppercase tracking-widest border border-black/20 dark:border-white/20 hover:bg-black/5 dark:hover:bg-white/10 rounded"
+                        data-name="Signature Deep Blue Shirt"
+                        data-color="Blue"
+                        data-price="95"
+                        data-image="masaaki_images/blueshirt.jpeg">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="lookbook" class="relative h-[60vh] md:h-[80vh] border-t border-black/10 dark:border-white/10">
+        <video class="absolute inset-0 w-full h-full object-cover" autoplay muted loop playsinline preload="metadata"> 
+            <source src="masaaki_images/lookbook.mp4" type="video/mp4">
+            <source src="https://assets.mixkit.co/videos/preview/mixkit-fashion-runway-44849-large.mp4" type="video/mp4">
+        </video>
+        <div class="absolute inset-0 bg-black/40"></div>
+        <div class="relative z-10 h-full flex items-center justify-center text-center px-6">
+            <div class="space-y-4">
+                <h3 class="text-3xl md:text-5xl font-bold uppercase tracking-tighter">Lookbook</h3>
+                <p class="text-xs md:text-sm text-white/80 uppercase tracking-[0.4em]">Editorial • Texture • Form</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="py-24 px-6 max-w-5xl mx-auto">
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+            <div class="space-y-4">
+                <h3 class="text-2xl font-bold uppercase tracking-tighter">About the Brand</h3>
+                <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">Morex Masaaki explores disciplined simplicity in everyday wear. Each piece focuses on proportion, material integrity, and restrained detail, creating a wardrobe foundation that endures seasons and trends. Monochrome by choice, the line emphasizes silhouette and texture over noise.</p>
+            </div>
+            <div class="grid grid-cols-2 gap-3">
+                <img alt="editorial" class="w-full h-40 object-cover rounded border border-black/10 dark:border-white/10" src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?q=80&w=800&auto=format&fit=crop"/>
+                <img alt="fabric" class="w-full h-40 object-cover rounded border border-black/10 dark:border-white/10" src="https://images.unsplash.com/photo-1516826957135-700dedea698c?q=80&w=800&auto=format&fit=crop"/>
+                <img alt="monochrome" class="w-full h-40 object-cover rounded border border-black/10 dark:border-white/10" src="https://images.unsplash.com/photo-1475180098004-ca77a66827be?q=80&w=800&auto=format&fit=crop"/>
+                <img alt="detail" class="w-full h-40 object-cover rounded border border-black/10 dark:border-white/10" src="https://images.unsplash.com/photo-1509631179647-0177331693ae?q=80&w=800&auto=format&fit=crop"/>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq" class="py-24 border-t border-black/10 dark:border-white/10">
+        <div class="max-w-3xl mx-auto px-6 space-y-4">
+            <h3 class="text-2xl font-bold uppercase tracking-tighter mb-4">FAQ</h3>
+            <details class="border border-black/10 dark:border-white/10 rounded">
+                <summary class="cursor-pointer px-4 py-3 text-sm uppercase tracking-[0.2em]">Shipping Times</summary>
+                <div class="px-4 pb-4 text-sm text-black/80 dark:text-white/80">Orders dispatch within 3–5 business days with tracked priority. You’ll receive a tracking link on shipment.</div>
+            </details>
+            <details class="border border-black/10 dark:border-white/10 rounded">
+                <summary class="cursor-pointer px-4 py-3 text-sm uppercase tracking-[0.2em]">Returns</summary>
+                <div class="px-4 pb-4 text-sm text-black/80 dark:text-white/80">Unused items in original condition are eligible for return or exchange within 14 days of delivery.</div>
+            </details>
+            <details class="border border-black/10 dark:border-white/10 rounded">
+                <summary class="cursor-pointer px-4 py-3 text-sm uppercase tracking-[0.2em]">Sizing</summary>
+                <div class="px-4 pb-4 text-sm text-black/80 dark:text-white/80">Shirts follow a tailored profile. If between sizes, select the larger for ease; see the size selector above.</div>
+            </details>
+            <details class="border border-black/10 dark:border-white/10 rounded">
+                <summary class="cursor-pointer px-4 py-3 text-sm uppercase tracking-[0.2em]">Care</summary>
+                <div class="px-4 pb-4 text-sm text-black/80 dark:text-white/80">Cold wash, inside-out. Hang dry to preserve structure and hand. Low iron as needed. Avoid bleach.</div>
+            </details>
+        </div>
+    </section>
+
+    <section id="policies" class="py-6 bg-gray-50 dark:bg-white/5 border-t border-black/10 dark:border-white/10">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-4 text-xs uppercase tracking-[0.2em] text-black/60 dark:text-white/60">
+            <div class="flex items-center gap-2"><span>✓</span> Free Returns 14 Days</div>
+            <div class="flex items-center gap-2"><span>✓</span> Secure Checkout</div>
+            <div class="flex items-center gap-2"><span>✓</span> Priority Shipping</div>
+            <div class="flex items-center gap-2"><span>✓</span> Support 7 Days</div>
+        </div>
+    </section>
+
     <!-- Order Section -->
-    <section id="order-section" class="py-32 px-6 bg-dark border-t border-white/5">
+    <section id="order-section" class="py-32 px-6 bg-gray-50 dark:bg-dark border-t border-black/5 dark:border-white/5">
         <div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-16 items-center">
             <!-- Form Side -->
             <div class="order-2 md:order-1">
@@ -107,35 +282,38 @@
                             <span class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500">
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" /><circle cx="12" cy="7" r="4" /></svg>
                             </span>
-                            <input type="text" id="fullName" placeholder="FULL NAME" required class="w-full bg-black border border-white/10 p-4 pl-12 rounded-md focus:border-white/50 outline-none transition-all uppercase tracking-widest text-[10px]">
+                            <input type="text" id="fullName" placeholder="FULL NAME" required class="w-full bg-white dark:bg-black border border-black/10 dark:border-white/10 p-4 pl-12 rounded-md focus:border-black/40 dark:focus:border-white/50 outline-none transition-all uppercase tracking-widest text-[10px]">
                         </div>
 
                         <div class="relative">
                             <span class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500">
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" /><circle cx="12" cy="10" r="3" /></svg>
                             </span>
-                            <input type="text" id="address" placeholder="DELIVERY ADDRESS" required class="w-full bg-black border border-white/10 p-4 pl-12 rounded-md focus:border-white/50 outline-none transition-all uppercase tracking-widest text-[10px]">
+                            <input type="text" id="address" placeholder="DELIVERY ADDRESS" required class="w-full bg-white dark:bg-black border border-black/10 dark:border-white/10 p-4 pl-12 rounded-md focus:border-black/40 dark:focus:border-white/50 outline-none transition-all uppercase tracking-widest text-[10px]">
                         </div>
 
                         <div class="relative">
                             <span class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500">
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" /></svg>
                             </span>
-                            <input type="tel" id="phone" placeholder="PHONE NUMBER" required class="w-full bg-black border border-white/10 p-4 pl-12 rounded-md focus:border-white/50 outline-none transition-all uppercase tracking-widest text-[10px]">
+                            <input type="tel" id="phone" placeholder="PHONE NUMBER" required class="w-full bg-white dark:bg-black border border-black/10 dark:border-white/10 p-4 pl-12 rounded-md focus:border-black/40 dark:focus:border-white/50 outline-none transition-all uppercase tracking-widest text-[10px]">
                         </div>
 
                         <!-- Collection Choice & Pieces -->
                         <div class="grid grid-cols-2 gap-4">
                             <div class="space-y-2">
                                 <label class="text-[9px] uppercase tracking-[0.3em] text-gray-500 ml-1">Collection</label>
-                                <select id="collectionChoice" class="w-full bg-black border border-white/10 p-3 rounded-md focus:border-white/50 outline-none transition-all text-[10px] uppercase appearance-none">
+                                <select id="collectionChoice" class="w-full bg-white dark:bg-black border border-black/10 dark:border-white/10 p-3 rounded-md focus:border-black/40 dark:focus:border-white/50 outline-none transition-all text-[10px] uppercase appearance-none">
                                     <option value="Black Shirt">Jet Black</option>
                                     <option value="White Shirt">Optic White</option>
+                                    <option value="Green Shirt">Moss Green</option>
+                                    <option value="Brown Shirt">Earth Brown</option>
+                                    <option value="Blue Shirt">Deep Blue</option>
                                 </select>
                             </div>
                             <div class="space-y-2">
                                 <label class="text-[9px] uppercase tracking-[0.3em] text-gray-500 ml-1">Pieces</label>
-                                <input type="number" id="pieces" value="1" min="1" max="10" class="w-full bg-black border border-white/10 p-3 rounded-md focus:border-white/50 outline-none transition-all text-[10px]">
+                                <input type="number" id="pieces" value="1" min="1" max="10" class="w-full bg-white dark:bg-black border border-black/10 dark:border-white/10 p-3 rounded-md focus:border-black/40 dark:focus:border-white/50 outline-none transition-all text-[10px]">
                             </div>
                         </div>
 
@@ -143,15 +321,15 @@
                         <div class="space-y-3">
                             <label class="text-[9px] uppercase tracking-[0.3em] text-gray-500 ml-1">Select Size</label>
                             <div id="size-buttons" class="grid grid-cols-5 gap-2">
-                                <button type="button" class="size-btn py-3 border border-white/10 text-[10px] transition-all hover:border-white/30" data-size="S">S</button>
-                                <button type="button" class="size-btn py-3 border border-white border-white bg-white text-black text-[10px] transition-all" data-size="M">M</button>
-                                <button type="button" class="size-btn py-3 border border-white/10 text-[10px] transition-all hover:border-white/30" data-size="L">L</button>
-                                <button type="button" class="size-btn py-3 border border-white/10 text-[10px] transition-all hover:border-white/30" data-size="XL">XL</button>
-                                <button type="button" class="size-btn py-3 border border-white/10 text-[10px] transition-all hover:border-white/30" data-size="XXL">XXL</button>
+                                <button type="button" class="size-btn py-3 border border-black/10 dark:border-white/10 text-[10px] transition-all hover:border-black/30 dark:hover:border-white/30" data-size="S">S</button>
+                                <button type="button" class="size-btn py-3 border border-black bg-black text-white dark:border-white dark:bg-white dark:text-black text-[10px] transition-all" data-size="M">M</button>
+                                <button type="button" class="size-btn py-3 border border-black/10 dark:border-white/10 text-[10px] transition-all hover:border-black/30 dark:hover:border-white/30" data-size="L">L</button>
+                                <button type="button" class="size-btn py-3 border border-black/10 dark:border-white/10 text-[10px] transition-all hover:border-black/30 dark:hover:border-white/30" data-size="XL">XL</button>
+                                <button type="button" class="size-btn py-3 border border-black/10 dark:border-white/10 text-[10px] transition-all hover:border-black/30 dark:hover:border-white/30" data-size="XXL">XXL</button>
                             </div>
                         </div>
 
-                        <button type="submit" class="w-full py-5 bg-white text-black font-bold uppercase tracking-[0.4em] text-[10px] hover:bg-gray-200 transition-all active:scale-[0.98] flex items-center justify-center gap-3">
+                        <button type="submit" class="w-full py-5 bg-black text-white dark:bg-white dark:text-black font-bold uppercase tracking-[0.4em] text-[10px] hover:bg-gray-900 dark:hover:bg-gray-200 transition-all active:scale-[0.98] flex items-center justify-center gap-3">
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z" /><path d="M3 6h18" /><path d="M16 10a4 4 0 0 1-8 0" /></svg>
                             Confirm Order
                         </button>
@@ -209,9 +387,125 @@
         </div>
     </section>
 
-    <footer class="py-20 text-center border-t border-white/5">
-        <p class="text-[9px] uppercase tracking-[0.5em] text-white/20">© 2026 MOREX MASAAKI. ALL RIGHTS RESERVED.</p>
+    <footer class="border-t border-black/10 dark:border-white/10">
+        <div class="max-w-7xl mx-auto px-6 py-16 grid md:grid-cols-4 gap-10">
+            <div class="space-y-3">
+                <div class="text-xl font-serif tracking-tight">Morex Masaaki</div>
+                <p class="text-sm text-black/60 dark:text-white/60 leading-relaxed">Monochrome essentials with disciplined lines and enduring comfort.</p>
+            </div>
+            <div class="space-y-3">
+                <div class="text-xs uppercase tracking-[0.3em] text-black/60 dark:text-white/60">Shop</div>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="#collection" class="text-black/80 dark:text-white/80 hover:underline">Collection</a></li>
+                    <li><a href="#order-section" class="text-black/80 dark:text-white/80 hover:underline">Order</a></li>
+                    <li><a href="#about" class="text-black/80 dark:text-white/80 hover:underline">About</a></li>
+                </ul>
+            </div>
+            <div class="space-y-3">
+                <div class="text-xs uppercase tracking-[0.3em] text-black/60 dark:text-white/60">Connect</div>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="mailto:studio@morexmasaaki.com" class="text-black/80 dark:text-white/80 hover:underline">studio@morexmasaaki.com</a></li>
+                    <li><a href="https://instagram.com/morex.masaaki" target="_blank" class="text-black/80 dark:text-white/80 hover:underline">Instagram</a></li>
+                </ul>
+            </div>
+            <div class="space-y-3">
+                <div class="text-xs uppercase tracking-[0.3em] text-black/60 dark:text-white/60">Updates</div>
+                <form id="nl-form" class="flex items-center gap-2">
+                    <input type="email" placeholder="Email address" class="flex-1 bg-white dark:bg-black border border-black/10 dark:border-white/10 rounded-md px-3 py-2 text-sm focus:border-black/40 dark:focus:border-white/40 outline-none">
+                    <button type="submit" class="px-4 py-2 text-sm uppercase tracking-widest border border-black/20 dark:border-white/20 rounded hover:bg-black/5 dark:hover:bg-white/10">Notify</button>
+                </form>
+                <p class="text-xs text-black/50 dark:text-white/50">Product drops and early access. No noise.</p>
+            </div>
+        </div>
+        <div class="border-t border-black/10 dark:border-white/10">
+            <div class="max-w-7xl mx-auto px-6 py-6 flex flex-col md:flex-row items-center justify-between gap-3">
+                <p class="text-xs text-black/50 dark:text-white/50">© 2026 Morex Masaaki. All rights reserved.</p>
+                <div class="flex items-center gap-6 text-xs">
+                    <a href="#" class="text-black/60 dark:text-white/60 hover:underline">Terms</a>
+                    <a href="#" class="text-black/60 dark:text-white/60 hover:underline">Privacy</a>
+                    <a href="#order-section" class="text-black/60 dark:text-white/60 hover:underline">Support</a>
+                </div>
+            </div>
+        </div>
     </footer>
+
+    <div id="cart-overlay" class="hidden fixed inset-0 z-40 bg-black/50"></div>
+    <aside id="cart-drawer" class="hidden fixed top-0 right-0 h-full w-[360px] z-50 bg-white dark:bg-black border-l border-black/10 dark:border-white/10 shadow-2xl p-6 flex flex-col">
+        <div class="flex items-center justify-between mb-4">
+            <h3 class="text-lg font-semibold tracking-tight">Cart</h3>
+            <button id="cart-close" class="text-black/60 dark:text-white/60 hover:text-black dark:hover:text-white text-xl leading-none">×</button>
+        </div>
+        <div id="cart-items" class="flex-1 overflow-y-auto space-y-4"></div>
+        <div class="pt-4 border-t border-black/10 dark:border-white/10 space-y-3">
+            <div class="flex items-center justify-between">
+                <span class="text-sm uppercase tracking-widest text-black/70 dark:text-white/70">Total</span>
+                <span id="cart-total" class="text-lg font-medium">$0</span>
+            </div>
+            <button id="cart-checkout" class="w-full py-3 bg-black text-white dark:bg-white dark:text-black font-bold uppercase tracking-[0.3em] text-[11px] hover:bg-gray-900 dark:hover:bg-gray-200 transition-all">Proceed to Order</button>
+        </div>
+    </aside>
+
+    <div id="checkout-modal" class="hidden fixed inset-0 z-50">
+        <div class="absolute inset-0 bg-black/60 backdrop-blur-sm"></div>
+        <div class="relative h-full flex items-center justify-center p-6">
+            <div class="w-full max-w-3xl bg-white dark:bg-black border border-black/15 dark:border-white/15 rounded-lg p-6 md:p-8 shadow-2xl">
+                <div class="flex items-start justify-between mb-6">
+                    <h3 class="text-xl md:text-2xl font-semibold tracking-tight">Checkout</h3>
+                    <button id="checkout-close" class="ml-4 text-black/60 dark:text-white/60 hover:text-black dark:hover:text-white text-xl leading-none">×</button>
+                </div>
+                <div id="checkout-form" class="grid md:grid-cols-2 gap-6">
+                    <div class="space-y-4">
+                        <div>
+                            <div class="text-xs uppercase tracking-[0.3em] text-black/60 dark:text-white/60 mb-2">Order Summary</div>
+                            <div id="checkout-items" class="space-y-3 max-h-56 overflow-y-auto pr-1"></div>
+                            <div class="flex items-center justify-between border-t border-black/10 dark:border-white/10 pt-3 mt-3">
+                                <span class="text-xs uppercase tracking-[0.2em] text-black/60 dark:text-white/60">Total</span>
+                                <span id="checkout-total" class="text-lg font-medium">$0</span>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="text-xs uppercase tracking-[0.3em] text-black/60 dark:text-white/60 mb-2">Payment Method</div>
+                            <div class="space-y-2 text-sm">
+                                <label class="flex items-center gap-2"><input type="radio" name="paymentMethod" value="Card" checked> Card</label>
+                                <label class="flex items-center gap-2"><input type="radio" name="paymentMethod" value="Transfer"> Bank Transfer</label>
+                                <label class="flex items-center gap-2"><input type="radio" name="paymentMethod" value="COD"> Cash on Delivery</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="grid gap-3">
+                            <input id="coName" type="text" placeholder="FULL NAME" class="w-full bg-white dark:bg-black border border-black/10 dark:border-white/10 p-3 rounded-md text-[12px] uppercase tracking-[0.2em]">
+                            <input id="coEmail" type="email" placeholder="EMAIL" class="w-full bg-white dark:bg-black border border-black/10 dark:border-white/10 p-3 rounded-md text-[12px] uppercase tracking-[0.2em]">
+                            <input id="coPhone" type="tel" placeholder="PHONE" class="w-full bg-white dark:bg-black border border-black/10 dark:border-white/10 p-3 rounded-md text-[12px] uppercase tracking-[0.2em]">
+                            <input id="coAddress" type="text" placeholder="DELIVERY ADDRESS" class="w-full bg-white dark:bg-black border border-black/10 dark:border-white/10 p-3 rounded-md text-[12px] uppercase tracking-[0.2em]">
+                        </div>
+                        <button id="checkout-submit" class="w-full py-3 bg-black text-white dark:bg-white dark:text-black font-bold uppercase tracking-[0.3em] text-[11px] hover:bg-gray-900 dark:hover:bg-gray-200 transition-all">Complete Order</button>
+                        <p id="checkout-error" class="hidden text-xs text-red-500">Please fill name, phone and address.</p>
+                    </div>
+                </div>
+                <div id="checkout-success" class="hidden space-y-5">
+                    <div class="text-center space-y-2">
+                        <h4 class="text-2xl font-bold uppercase tracking-tighter">Order Placed</h4>
+                        <p class="text-sm text-black/70 dark:text-white/70">Thank you. Your payment preference has been recorded.</p>
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div class="p-4 rounded border border-black/10 dark:border-white/10">
+                            <div class="text-xs uppercase tracking-[0.3em] text-black/60 dark:text-white/60">Estimated Delivery</div>
+                            <div id="co-date" class="text-lg font-medium"></div>
+                            <div id="co-time" class="text-xs text-black/60 dark:text-white/60"></div>
+                        </div>
+                        <div class="p-4 rounded border border-black/10 dark:border-white/10">
+                            <div class="text-xs uppercase tracking-[0.3em] text-black/60 dark:text-white/60">Contact</div>
+                            <div id="co-contact" class="text-sm"></div>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-end gap-3">
+                        <button id="checkout-done" class="px-4 py-2 border border-black/20 dark:border-white/20 rounded text-sm uppercase tracking-widest hover:bg-black/5 dark:hover:bg-white/10">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <div id="review-modal" class="hidden fixed inset-0 z-50">
         <div class="absolute inset-0 bg-black/70 backdrop-blur-sm"></div>
