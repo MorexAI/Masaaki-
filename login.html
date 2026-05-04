@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Morex Masaaki</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="login.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Cinzel', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="login-page bg-white text-black dark:bg-black dark:text-white selection:bg-black selection:text-white">
+    <header class="login-topbar px-6 py-5 flex items-center justify-end">
+        <a href="index.html" aria-label="Back to home" class="login-home-link inline-flex items-center justify-center w-11 h-11 border border-black/10 dark:border-white/10 rounded-full text-black/60 dark:text-white/60 hover:text-black dark:hover:text-white hover:border-black/30 dark:hover:border-white/30 transition">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M3 10.5 12 3l9 7.5" />
+                <path d="M5 9.5V21h14V9.5" />
+            </svg>
+        </a>
+    </header>
+    <main class="login-shell min-h-[calc(100vh-76px)] flex items-center justify-center px-6 pb-6">
+        <div class="login-card w-full max-w-md bg-white dark:bg-black border border-black/10 dark:border-white/10 rounded-lg p-8 space-y-6">
+            <div class="login-header text-center space-y-2">
+                <a href="index.html" class="login-brand text-sm uppercase tracking-[0.3em] text-black/60 dark:text-white/60">Morex Masaaki</a>
+                <h1 class="text-2xl font-serif tracking-tight">Sign In</h1>
+                <p class="login-subtext text-xs text-black/60 dark:text-white/60">Access your account to place orders faster</p>
+            </div>
+            <div class="login-form space-y-4">
+                <input id="login-page-email" type="email" placeholder="EMAIL" class="login-input w-full bg-white dark:bg-black border border-black/10 dark:border-white/10 p-3 rounded-md text-[12px] uppercase tracking-[0.2em]">
+                <input id="login-page-password" type="password" placeholder="PASSWORD" class="login-input w-full bg-white dark:bg-black border border-black/10 dark:border-white/10 p-3 rounded-md text-[12px] uppercase tracking-[0.2em]">
+                <button id="login-page-submit" class="login-button w-full py-3 bg-black text-white dark:bg-white dark:text-black font-bold uppercase tracking-[0.3em] text-[11px] hover:bg-gray-900 dark:hover:bg-gray-200 transition-all">Login</button>
+                <p id="login-page-error" class="hidden text-xs text-red-500">Invalid email or password.</p>
+            </div>
+        </div>
+    </main>
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const saved = localStorage.getItem('theme');
+            if (saved === 'dark' || (!saved && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+        });
+    </script>
+</body>
+</html>

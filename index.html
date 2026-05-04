@@ -17,7 +17,7 @@
                 extend: {
                     colors: {
                         brand: '#ffffff',
-                        dark: '#000000',
+                        dark: '#000000', 
                         card: '#0a0a0a',
                     },
                     fontFamily: {
@@ -31,25 +31,46 @@
 </head>
 <body class="bg-white text-black dark:bg-black dark:text-white selection:bg-black selection:text-white">
     <header class="fixed top-0 left-0 right-0 z-40 border-b border-black/10 dark:border-white/10 bg-white/70 dark:bg-black/50 backdrop-blur-md">
-        <nav class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-            <a href="#" class="text-lg md:text-xl font-serif tracking-tight">Morex Masaaki</a>
-            <div class="flex items-center gap-6">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 min-h-16 py-2 flex items-center justify-between gap-3">
+            <a href="#" class="text-base sm:text-lg md:text-xl font-serif tracking-tight shrink-0">Morex Masaaki</a>
+            <div class="hidden lg:flex items-center gap-5 xl:gap-6">
                 <a href="#collection" class="text-sm uppercase tracking-widest text-black/70 dark:text-white/70 hover:text-black dark:hover:text-white">Collection</a>
                 <a href="#about" class="text-sm uppercase tracking-widest text-black/70 dark:text-white/70 hover:text-black dark:hover:text-white">About</a>
                 <a href="#lookbook" class="text-sm uppercase tracking-widest text-black/70 dark:text-white/70 hover:text-black dark:hover:text-white">Lookbook</a>
                 <a href="#faq" class="text-sm uppercase tracking-widest text-black/70 dark:text-white/70 hover:text-black dark:hover:text-white">FAQ</a>
                 <a href="#order-section" class="text-sm uppercase tracking-widest text-black/70 dark:text-white/70 hover:text-black dark:hover:text-white">Order</a>
-                <button id="theme-toggle" aria-label="Toggle theme" class="px-3 py-2 border border-black/20 dark:border-white/20 rounded-md text-sm uppercase tracking-widest hover:bg-black/5 dark:hover:bg-white/10">🌞</button>
-                <button id="open-cart" class="relative px-3 py-2 border border-black/20 dark:border-white/20 rounded-md text-sm uppercase tracking-widest hover:bg-black/5 dark:hover:bg-white/10">
+            </div>
+            <div class="flex items-center gap-2 sm:gap-3 lg:gap-4 shrink-0">
+                <button id="open-account" class="hidden xl:inline-flex px-3 py-2 border border-black/20 dark:border-white/20 rounded-md text-xs sm:text-sm uppercase tracking-widest hover:bg-black/5 dark:hover:bg-white/10">Account</button>
+                <a href="login.html" class="hidden md:inline-flex px-3 py-2 border border-black/20 dark:border-white/20 rounded-md text-xs sm:text-sm uppercase tracking-widest hover:bg-black/5 dark:hover:bg-white/10">Login</a>
+                <button id="mobile-menu-toggle" class="lg:hidden px-3 py-2 border border-black/20 dark:border-white/20 rounded-md text-sm tracking-widest hover:bg-black/5 dark:hover:bg-white/10">☰</button>
+                <button id="theme-toggle" aria-label="Toggle theme" class="px-2.5 sm:px-3 py-2 border border-black/20 dark:border-white/20 rounded-md text-sm uppercase tracking-widest hover:bg-black/5 dark:hover:bg-white/10">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="4" />
+                        <path d="M12 2v2M12 20v2M4 12H2M22 12h-2M5 5l1.5 1.5M17.5 17.5L19 19M19 5l-1.5 1.5M6.5 17.5L5 19" />
+                    </svg>
+                </button>
+                <button id="open-cart" class="relative px-2.5 sm:px-3 py-2 border border-black/20 dark:border-white/20 rounded-md text-xs sm:text-sm uppercase tracking-widest hover:bg-black/5 dark:hover:bg-white/10">
                     Cart
                     <span id="cart-count" class="absolute -top-2 -right-2 text-[10px] px-1.5 py-0.5 rounded bg-black text-white dark:bg-white dark:text-black">0</span>
                 </button>
             </div>
         </nav>
+        <div id="mobile-menu" class="hidden lg:hidden px-4 sm:px-6 py-4 border-t border-black/10 dark:border-white/10 bg-white/95 dark:bg-black/90">
+            <div class="grid gap-3">
+                <a href="#collection" class="block text-sm uppercase tracking-widest text-black dark:text-white">Collection</a>
+                <a href="#about" class="block text-sm uppercase tracking-widest text-black dark:text-white">About</a>
+                <a href="#lookbook" class="block text-sm uppercase tracking-widest text-black dark:text-white">Lookbook</a>
+                <a href="#faq" class="block text-sm uppercase tracking-widest text-black dark:text-white">FAQ</a>
+                <a href="#order-section" class="block text-sm uppercase tracking-widest text-black dark:text-white">Order</a>
+                <button id="mobile-account-btn" class="text-left text-sm uppercase tracking-widest text-black dark:text-white">Account</button>
+                <a href="login.html" class="block text-sm uppercase tracking-widest text-black dark:text-white">Login</a>
+            </div>
+        </div>
     </header>
     <div class="h-16"></div>
     <!-- Hero Section -->
-    <section class="h-screen flex flex-col items-center justify-center relative px-4 overflow-hidden">
+    <section class="min-h-[calc(100vh-4rem)] flex flex-col items-center justify-center relative px-4 overflow-hidden py-12">
         <div class="z-10 text-center space-y-12 animate-fade-in">
             <div class="flex flex-col items-center relative">
                 <!-- Signature Logo -->
@@ -57,15 +78,15 @@
                     <div class="absolute inset-0 rounded-md bg-black/90 block dark:hidden"></div>
                     <img id="brand-logo" src="masaaki_images/light logo.jpeg" alt="Morex Masaaki Logo" class="relative z-10 w-[200px] md:w-[240px] dark:w-[320px] h-auto opacity-100 mb-[-12px] mix-blend-lighten">
                 </div>
-                <h1 class="text-4xl md:text-6xl font-serif tracking-tighter italic animate-glow relative z-10">Morex Masaaki</h1>
-                <p class="mt-3 text-xs uppercase tracking-[0.35em] text-black/60 dark:text-white/60">Simple Luxury • Monochrome Essentials</p>
+                <h1 class="text-3xl sm:text-4xl md:text-6xl font-serif tracking-tighter italic animate-glow relative z-10">Morex Masaaki</h1>
+                <p class="mt-3 text-[10px] sm:text-xs uppercase tracking-[0.22em] sm:tracking-[0.35em] text-black/60 dark:text-white/60">Simple Luxury • Monochrome Essentials</p>
                 <div class="absolute inset-0 bg-white blur-[80px] -z-10 rounded-full opacity-15"></div>
             </div>
-            <div class="flex items-center gap-4 justify-center">
-                <button onclick="scrollToOrder()" class="group relative px-8 py-3 bg-black text-white dark:bg-white dark:text-black border border-black/20 dark:border-white/20 hover:bg-gray-900 dark:hover:bg-gray-200 transition-all duration-500 rounded-full overflow-hidden">
+            <div class="flex flex-col sm:flex-row items-center gap-3 sm:gap-4 justify-center">
+                <button onclick="scrollToOrder()" class="group relative w-full sm:w-auto px-8 py-3 bg-black text-white dark:bg-white dark:text-black border border-black/20 dark:border-white/20 hover:bg-gray-900 dark:hover:bg-gray-200 transition-all duration-500 rounded-full overflow-hidden">
                     <span class="relative z-10 text-[10px] font-bold uppercase tracking-[0.5em]">Order Now</span>
                 </button>
-                <a href="#collection" class="px-8 py-3 border border-black/20 dark:border-white/20 rounded-full text-[10px] uppercase tracking-[0.5em] hover:bg-black/5 dark:hover:bg-white/10 transition">Explore</a>
+                <a href="#collection" class="w-full sm:w-auto px-8 py-3 border border-black/20 dark:border-white/20 rounded-full text-[10px] uppercase tracking-[0.5em] hover:bg-black/5 dark:hover:bg-white/10 transition">Explore</a>
             </div>
         </div>
         
@@ -80,7 +101,7 @@
     </section>
 
     <section id="highlights" class="py-12 border-t border-black/10 dark:border-white/10">
-        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-3 gap-6">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 grid md:grid-cols-3 gap-6">
             <div class="flex items-start gap-4">
                 <svg width="20" height="20" viewBox="0 0 24 24" class="mt-1"><path d="M12 2v20M2 12h20" stroke="currentColor" stroke-width="2" fill="none"/></svg>
                 <div>
@@ -106,7 +127,7 @@
     </section>
 
     <!-- Products Section -->
-    <section id="collection" class="py-32 px-6 max-w-7xl mx-auto space-y-20">
+    <section id="collection" class="py-20 md:py-32 px-4 sm:px-6 max-w-7xl mx-auto space-y-16 md:space-y-20">
         <div class="text-center space-y-4">
             <h2 class="text-4xl md:text-5xl font-bold tracking-tighter uppercase">The Collection</h2>
             <p class="text-gray-500 text-[10px] uppercase tracking-[0.3em]">Simple Luxury. Strictly Monochrome.</p>
@@ -206,7 +227,7 @@
         </div>
     </section>
 
-    <section id="lookbook" class="relative h-[60vh] md:h-[80vh] border-t border-black/10 dark:border-white/10">
+    <section id="lookbook" class="relative h-[42vh] sm:h-[52vh] md:h-[80vh] border-t border-black/10 dark:border-white/10">
         <video class="absolute inset-0 w-full h-full object-cover" autoplay muted loop playsinline preload="metadata"> 
             <source src="masaaki_images/lookbook.mp4" type="video/mp4">
             <source src="https://assets.mixkit.co/videos/preview/mixkit-fashion-runway-44849-large.mp4" type="video/mp4">
@@ -220,7 +241,7 @@
         </div>
     </section>
 
-    <section id="about" class="py-24 px-6 max-w-5xl mx-auto">
+    <section id="about" class="py-20 md:py-24 px-4 sm:px-6 max-w-5xl mx-auto">
         <div class="grid md:grid-cols-2 gap-12 items-center">
             <div class="space-y-4">
                 <h3 class="text-2xl font-bold uppercase tracking-tighter">About the Brand</h3>
@@ -235,8 +256,8 @@
         </div>
     </section>
 
-    <section id="faq" class="py-24 border-t border-black/10 dark:border-white/10">
-        <div class="max-w-3xl mx-auto px-6 space-y-4">
+    <section id="faq" class="py-20 md:py-24 border-t border-black/10 dark:border-white/10">
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 space-y-4">
             <h3 class="text-2xl font-bold uppercase tracking-tighter mb-4">FAQ</h3>
             <details class="border border-black/10 dark:border-white/10 rounded">
                 <summary class="cursor-pointer px-4 py-3 text-sm uppercase tracking-[0.2em]">Shipping Times</summary>
@@ -258,7 +279,7 @@
     </section>
 
     <section id="policies" class="py-6 bg-gray-50 dark:bg-white/5 border-t border-black/10 dark:border-white/10">
-        <div class="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-4 text-xs uppercase tracking-[0.2em] text-black/60 dark:text-white/60">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 text-xs uppercase tracking-[0.2em] text-black/60 dark:text-white/60">
             <div class="flex items-center gap-2"><span>✓</span> Free Returns 14 Days</div>
             <div class="flex items-center gap-2"><span>✓</span> Secure Checkout</div>
             <div class="flex items-center gap-2"><span>✓</span> Priority Shipping</div>
@@ -267,8 +288,8 @@
     </section>
 
     <!-- Order Section -->
-    <section id="order-section" class="py-32 px-6 bg-gray-50 dark:bg-dark border-t border-black/5 dark:border-white/5">
-        <div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-16 items-center">
+    <section id="order-section" class="py-20 md:py-32 px-4 sm:px-6 bg-gray-50 dark:bg-dark border-t border-black/5 dark:border-white/5">
+        <div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-10 md:gap-16 items-center">
             <!-- Form Side -->
             <div class="order-2 md:order-1">
                 <div id="order-form-wrapper">
@@ -388,7 +409,7 @@
     </section>
 
     <footer class="border-t border-black/10 dark:border-white/10">
-        <div class="max-w-7xl mx-auto px-6 py-16 grid md:grid-cols-4 gap-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 py-12 md:py-16 grid md:grid-cols-4 gap-8 md:gap-10">
             <div class="space-y-3">
                 <div class="text-xl font-serif tracking-tight">Morex Masaaki</div>
                 <p class="text-sm text-black/60 dark:text-white/60 leading-relaxed">Monochrome essentials with disciplined lines and enduring comfort.</p>
@@ -410,15 +431,15 @@
             </div>
             <div class="space-y-3">
                 <div class="text-xs uppercase tracking-[0.3em] text-black/60 dark:text-white/60">Updates</div>
-                <form id="nl-form" class="flex items-center gap-2">
-                    <input type="email" placeholder="Email address" class="flex-1 bg-white dark:bg-black border border-black/10 dark:border-white/10 rounded-md px-3 py-2 text-sm focus:border-black/40 dark:focus:border-white/40 outline-none">
+                <form id="nl-form" class="flex flex-col sm:flex-row items-stretch sm:items-center gap-2">
+                    <input type="email" placeholder="Email address" class="flex-1 min-w-0 bg-white dark:bg-black border border-black/10 dark:border-white/10 rounded-md px-3 py-2 text-sm focus:border-black/40 dark:focus:border-white/40 outline-none">
                     <button type="submit" class="px-4 py-2 text-sm uppercase tracking-widest border border-black/20 dark:border-white/20 rounded hover:bg-black/5 dark:hover:bg-white/10">Notify</button>
                 </form>
                 <p class="text-xs text-black/50 dark:text-white/50">Product drops and early access. No noise.</p>
             </div>
         </div>
         <div class="border-t border-black/10 dark:border-white/10">
-            <div class="max-w-7xl mx-auto px-6 py-6 flex flex-col md:flex-row items-center justify-between gap-3">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 py-6 flex flex-col md:flex-row items-center justify-between gap-3">
                 <p class="text-xs text-black/50 dark:text-white/50">© 2026 Morex Masaaki. All rights reserved.</p>
                 <div class="flex items-center gap-6 text-xs">
                     <a href="#" class="text-black/60 dark:text-white/60 hover:underline">Terms</a>
@@ -430,7 +451,7 @@
     </footer>
 
     <div id="cart-overlay" class="hidden fixed inset-0 z-40 bg-black/50"></div>
-    <aside id="cart-drawer" class="hidden fixed top-0 right-0 h-full w-[360px] z-50 bg-white dark:bg-black border-l border-black/10 dark:border-white/10 shadow-2xl p-6 flex flex-col">
+    <aside id="cart-drawer" class="hidden fixed top-0 right-0 h-full w-full max-w-[360px] z-50 bg-white dark:bg-black border-l border-black/10 dark:border-white/10 shadow-2xl p-4 sm:p-6 flex flex-col">
         <div class="flex items-center justify-between mb-4">
             <h3 class="text-lg font-semibold tracking-tight">Cart</h3>
             <button id="cart-close" class="text-black/60 dark:text-white/60 hover:text-black dark:hover:text-white text-xl leading-none">×</button>
@@ -445,10 +466,51 @@
         </div>
     </aside>
 
+    <div id="account-modal" class="hidden fixed inset-0 z-50">
+        <div class="absolute inset-0 bg-black/60 backdrop-blur-sm"></div>
+        <div class="relative h-full flex items-end sm:items-center justify-center p-3 sm:p-6">
+            <div class="w-full max-w-xl max-h-[92vh] overflow-y-auto bg-white dark:bg-black border border-black/15 dark:border-white/15 rounded-t-2xl sm:rounded-lg p-5 sm:p-6 md:p-8 shadow-2xl">
+                <div class="flex items-start justify-between mb-6">
+                    <h3 class="text-xl md:text-2xl font-semibold tracking-tight">Account</h3>
+                    <button id="account-close" class="ml-4 text-black/60 dark:text-white/60 hover:text-black dark:hover:text-white text-xl leading-none">×</button>
+                </div>
+                <div class="flex items-center gap-2 mb-6">
+                    <button id="tab-login" class="px-4 py-2 text-sm uppercase tracking-widest border border-black/20 dark:border-white/20 rounded active">Login</button>
+                    <button id="tab-signup" class="px-4 py-2 text-sm uppercase tracking-widest border border-black/20 dark:border-white/20 rounded">Sign Up</button>
+                </div>
+                <div id="login-form" class="space-y-4">
+                    <input id="login-email" type="email" placeholder="EMAIL" class="w-full bg-white dark:bg-black border border-black/10 dark:border-white/10 p-3 rounded-md text-[12px] uppercase tracking-[0.2em]">
+                    <input id="login-password" type="password" placeholder="PASSWORD" class="w-full bg-white dark:bg-black border border-black/10 dark:border-white/10 p-3 rounded-md text-[12px] uppercase tracking-[0.2em]">
+                    <button id="login-submit" class="w-full py-3 bg-black text-white dark:bg-white dark:text-black font-bold uppercase tracking-[0.3em] text-[11px] hover:bg-gray-900 dark:hover:bg-gray-200 transition-all">Login</button>
+                    <p id="login-error" class="hidden text-xs text-red-500">Invalid email or password.</p>
+                </div>
+                <div id="signup-form" class="hidden space-y-3">
+                    <div class="grid md:grid-cols-2 gap-3">
+                        <input id="su-name" type="text" placeholder="FULL NAME" class="bg-white dark:bg-black border border-black/10 dark:border-white/10 p-3 rounded-md text-[12px] uppercase tracking-[0.2em]">
+                        <input id="su-country" type="text" placeholder="COUNTRY" class="bg-white dark:bg-black border border-black/10 dark:border-white/10 p-3 rounded-md text-[12px] uppercase tracking-[0.2em]">
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-3">
+                        <input id="su-email" type="email" placeholder="EMAIL" class="bg-white dark:bg-black border border-black/10 dark:border-white/10 p-3 rounded-md text-[12px] uppercase tracking-[0.2em]">
+                        <input id="su-phone" type="tel" placeholder="PHONE" class="bg-white dark:bg-black border border-black/10 dark:border-white/10 p-3 rounded-md text-[12px] uppercase tracking-[0.2em]">
+                    </div>
+                    <input id="su-password" type="password" placeholder="PASSWORD (min 6)" class="w-full bg-white dark:bg-black border border-black/10 dark:border-white/10 p-3 rounded-md text-[12px] uppercase tracking-[0.2em]">
+                    <button id="signup-submit" class="w-full py-3 bg-black text-white dark:bg-white dark:text-black font-bold uppercase tracking-[0.3em] text-[11px] hover:bg-gray-900 dark:hover:bg-gray-200 transition-all">Create Account</button>
+                    <p id="signup-error" class="hidden text-xs text-red-500">Please complete all fields and use a valid email.</p>
+                </div>
+                <div id="account-logged" class="hidden space-y-4">
+                    <p id="account-greet" class="text-sm text-black/80 dark:text-white/80"></p>
+                    <div class="flex items-center justify-end gap-2">
+                        <button id="logout-btn" class="px-4 py-2 border border-black/20 dark:border-white/20 rounded text-sm uppercase tracking-widest hover:bg-black/5 dark:hover:bg-white/10">Logout</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div id="checkout-modal" class="hidden fixed inset-0 z-50">
         <div class="absolute inset-0 bg-black/60 backdrop-blur-sm"></div>
-        <div class="relative h-full flex items-center justify-center p-6">
-            <div class="w-full max-w-3xl bg-white dark:bg-black border border-black/15 dark:border-white/15 rounded-lg p-6 md:p-8 shadow-2xl">
+        <div class="relative h-full flex items-end sm:items-center justify-center p-3 sm:p-6">
+            <div class="w-full max-w-3xl max-h-[92vh] overflow-y-auto bg-white dark:bg-black border border-black/15 dark:border-white/15 rounded-t-2xl sm:rounded-lg p-5 sm:p-6 md:p-8 shadow-2xl">
                 <div class="flex items-start justify-between mb-6">
                     <h3 class="text-xl md:text-2xl font-semibold tracking-tight">Checkout</h3>
                     <button id="checkout-close" class="ml-4 text-black/60 dark:text-white/60 hover:text-black dark:hover:text-white text-xl leading-none">×</button>
@@ -509,8 +571,8 @@
 
     <div id="review-modal" class="hidden fixed inset-0 z-50">
         <div class="absolute inset-0 bg-black/70 backdrop-blur-sm"></div>
-        <div class="relative h-full flex items-center justify-center p-6">
-            <div class="w-full max-w-lg bg-black border border-white/15 rounded-lg p-8 shadow-2xl">
+        <div class="relative h-full flex items-end sm:items-center justify-center p-3 sm:p-6">
+            <div class="w-full max-w-lg max-h-[92vh] overflow-y-auto bg-black border border-white/15 rounded-t-2xl sm:rounded-lg p-5 sm:p-8 shadow-2xl">
                 <div class="flex items-start justify-between mb-6">
                     <h3 id="review-title" class="text-2xl font-semibold tracking-tight"></h3>
                     <button id="review-close" class="ml-4 text-white/50 hover:text-white text-xl leading-none">×</button>

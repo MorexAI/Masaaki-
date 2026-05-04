@@ -26,9 +26,32 @@ document.addEventListener('DOMContentLoaded', () => {
     const checkoutClose = document.getElementById('checkout-close');
     const checkoutSubmit = document.getElementById('checkout-submit');
     const checkoutDone = document.getElementById('checkout-done');
+    const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileAccountBtn = document.getElementById('mobile-account-btn');
+    const openAccountBtn = document.getElementById('open-account');
+    const accountModal = document.getElementById('account-modal');
+    const accountClose = document.getElementById('account-close');
+    const tabLogin = document.getElementById('tab-login');
+    const tabSignup = document.getElementById('tab-signup');
+    const loginEmail = document.getElementById('login-email');
+    const loginPassword = document.getElementById('login-password');
+    const loginSubmit = document.getElementById('login-submit');
+    const loginError = document.getElementById('login-error');
+    const suName = document.getElementById('su-name');
+    const suCountry = document.getElementById('su-country');
+    const suEmail = document.getElementById('su-email');
+    const suPhone = document.getElementById('su-phone');
+    const suPassword = document.getElementById('su-password');
+    const suSubmit = document.getElementById('signup-submit');
+    const suError = document.getElementById('signup-error');
+    const acctLogged = document.getElementById('account-logged');
+    const acctGreet = document.getElementById('account-greet');
+    const logoutBtn = document.getElementById('logout-btn');
 
     initTheme();
     loadCart();
+    initAuthUI();
 
     // Handle Size Selection
     sizeButtons.forEach(btn => {
@@ -57,20 +80,73 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    closeBtn.addEventListener('click', () => closeReviewDialog());
-    modal.addEventListener('click', (e) => {
-        if (e.target === modal) closeReviewDialog();
-    });
-    ctaBtn.addEventListener('click', () => {
-        closeReviewDialog();
-        scrollToOrder();
-    });
+    if (closeBtn) closeBtn.addEventListener('click', () => closeReviewDialog());
+    if (modal) {
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) closeReviewDialog();
+        });
+    }
+    if (ctaBtn) {
+        ctaBtn.addEventListener('click', () => {
+            closeReviewDialog();
+            scrollToOrder();
+        });
+    }
 
-    themeToggle.addEventListener('click', toggleTheme);
-    openCartBtn.addEventListener('click', openCart);
-    closeCartBtn.addEventListener('click', closeCart);
-    cartOverlay.addEventListener('click', closeCart);
-    checkoutBtn.addEventListener('click', openCheckout);
+    if (themeToggle) themeToggle.addEventListener('click', toggleTheme);
+    if (openCartBtn) openCartBtn.addEventListener('click', openCart);
+    if (closeCartBtn) closeCartBtn.addEventListener('click', closeCart);
+    if (cartOverlay) cartOverlay.addEventListener('click', closeCart);
+    if (mobileMenuToggle && mobileMenu) {
+        mobileMenuToggle.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        mobileMenu.querySelectorAll('a').forEach(a => {
+            a.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+    }
+
+    if (mobileAccountBtn && accountModal) {
+        mobileAccountBtn.addEventListener('click', () => {
+            mobileMenu && mobileMenu.classList.add('hidden');
+            showAccountModal('login');
+        });
+    }
+
+    if (openAccountBtn && accountModal) {
+        openAccountBtn.addEventListener('click', () => {
+            showAccountModal('login');
+        });
+        accountClose.addEventListener('click', () => accountModal.classList.add('hidden'));
+        accountModal.addEventListener('click', (e) => { if (e.target === accountModal) accountModal.classList.add('hidden'); });
+        tabLogin.addEventListener('click', () => switchAccountTab('login'));
+        tabSignup.addEventListener('click', () => switchAccountTab('signup'));
+        loginSubmit.addEventListener('click', handleLogin);
+        suSubmit.addEventListener('click', handleSignup);
+        if (logoutBtn) logoutBtn.addEventListener('click', handleLogout);
+    }
+
+    const lpEmail = document.getElementById('login-page-email');
+    const lpPassword = document.getElementById('login-page-password');
+    const lpSubmit = document.getElementById('login-page-submit');
+    const lpError = document.getElementById('login-page-error');
+    if (lpEmail && lpPassword && lpSubmit && lpError) {
+        lpSubmit.addEventListener('click', () => {
+            const email = lpEmail.value.trim().toLowerCase();
+            const password = lpPassword.value;
+            const users = getUsers();
+            const user = users[email];
+            if (!user || user.password !== password) {
+                lpError.classList.remove('hidden');
+                return;
+            }
+            setCurrentUser(user);
+            window.location.href = 'index.html';
+        });
+    }
+    if (checkoutBtn) checkoutBtn.addEventListener('click', openCheckout);
     addToCartBtns.forEach(btn => {
         btn.addEventListener('click', (e) => {
             e.stopPropagation();
@@ -89,7 +165,8 @@ document.addEventListener('DOMContentLoaded', () => {
     checkoutDone && checkoutDone.addEventListener('click', closeCheckout);
 
     // Handle Form Submission
-    orderForm.addEventListener('submit', (e) => {
+    if (orderForm) {
+        orderForm.addEventListener('submit', (e) => {
         e.preventDefault();
 
         const fullName = document.getElementById('fullName').value;
@@ -111,7 +188,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Scroll into view
         document.getElementById('success-wrapper').scrollIntoView({ behavior: 'smooth', block: 'center' });
-    });
+        });
+    }
 });
 
 // Delivery Calculation Logic
@@ -218,7 +296,9 @@ function updateThemeIcon() {
     const btn = document.getElementById('theme-toggle');
     if (!btn) return;
     const isDark = document.documentElement.classList.contains('dark');
-    btn.textContent = isDark ? '🌙' : '🌞';
+    btn.innerHTML = isDark
+        ? '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>'
+        : '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4 12H2M22 12h-2M5 5l1.5 1.5M17.5 17.5L19 19M19 5l-1.5 1.5M6.5 17.5L5 19"/></svg>';
 }
 
 function updateBrandLogoByTheme() {
@@ -228,6 +308,103 @@ function updateBrandLogoByTheme() {
     const lightSrc = 'masaaki_images/light logo.jpeg';
     const darkSrc = 'masaaki_images/masaaki logo.jpeg';
     img.src = isDark ? darkSrc : lightSrc;
+}
+
+function getUsers() {
+    try { return JSON.parse(localStorage.getItem('users') || '{}'); } catch { return {}; }
+}
+
+function setUsers(obj) {
+    localStorage.setItem('users', JSON.stringify(obj));
+}
+
+function getCurrentUser() {
+    try { return JSON.parse(localStorage.getItem('currentUser') || 'null'); } catch { return null; }
+}
+
+function setCurrentUser(user) {
+    localStorage.setItem('currentUser', JSON.stringify(user));
+}
+
+function initAuthUI() {
+    const user = getCurrentUser();
+    const btn = document.getElementById('open-account');
+    if (btn) {
+        btn.textContent = user ? (user.name?.split(' ')[0] || 'Account') : 'Account';
+    }
+    const fullNameInput = document.getElementById('fullName');
+    if (user && fullNameInput) fullNameInput.value = user.name || '';
+}
+
+function showAccountModal(tab) {
+    switchAccountTab(tab);
+    document.getElementById('account-modal').classList.remove('hidden');
+    loginError.classList.add('hidden');
+    suError.classList.add('hidden');
+    const user = getCurrentUser();
+    if (user) {
+        document.getElementById('login-form').classList.add('hidden');
+        document.getElementById('signup-form').classList.add('hidden');
+        acctGreet.textContent = 'Signed in as ' + (user.name || user.email);
+        acctLogged.classList.remove('hidden');
+    } else {
+        acctLogged.classList.add('hidden');
+    }
+}
+
+function switchAccountTab(tab) {
+    const loginForm = document.getElementById('login-form');
+    const signupForm = document.getElementById('signup-form');
+    if (tab === 'login') {
+        loginForm.classList.remove('hidden');
+        signupForm.classList.add('hidden');
+    } else {
+        signupForm.classList.remove('hidden');
+        loginForm.classList.add('hidden');
+    }
+}
+
+function handleSignup() {
+    const name = suName.value.trim();
+    const email = suEmail.value.trim().toLowerCase();
+    const password = suPassword.value;
+    const country = suCountry.value.trim();
+    const phone = suPhone.value.trim();
+    if (!name || !email || !password || password.length < 6 || !country || !phone) {
+        suError.classList.remove('hidden');
+        return;
+    }
+    const users = getUsers();
+    if (users[email]) {
+        suError.textContent = 'Account already exists. Please login.';
+        suError.classList.remove('hidden');
+        return;
+    }
+    users[email] = { name, email, password, country, phone };
+    setUsers(users);
+    setCurrentUser(users[email]);
+    document.getElementById('account-modal').classList.add('hidden');
+    initAuthUI();
+}
+
+function handleLogin() {
+    const email = loginEmail.value.trim().toLowerCase();
+    const password = loginPassword.value;
+    const users = getUsers();
+    const user = users[email];
+    if (!user || user.password !== password) {
+        loginError.classList.remove('hidden');
+        return;
+    }
+    setCurrentUser(user);
+    document.getElementById('account-modal').classList.add('hidden');
+    initAuthUI();
+}
+
+function handleLogout() {
+    localStorage.removeItem('currentUser');
+    initAuthUI();
+    document.getElementById('account-modal').classList.add('hidden');
 }
 
 function loadCart() {
@@ -300,7 +477,15 @@ function closeCart() {
 }
 
 function openCheckout() {
+    const user = getCurrentUser();
+    if (!user) {
+        showAccountModal('login');
+        return;
+    }
     renderCheckoutSummary();
+    document.getElementById('coName').value = user.name || '';
+    document.getElementById('coEmail').value = user.email || '';
+    document.getElementById('coPhone').value = user.phone || '';
     document.getElementById('checkout-form').classList.remove('hidden');
     document.getElementById('checkout-success').classList.add('hidden');
     document.getElementById('checkout-error').classList.add('hidden');
